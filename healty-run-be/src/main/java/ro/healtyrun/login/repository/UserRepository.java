@@ -13,4 +13,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
     @Query("SELECT u from User u where u.id = :uuid")
     Optional<User> findById(String uuid);
+
+    @Query("SELECT u from User u WHERE u.email = :username")
+    Optional<User> findByUsername(String username);
 }
