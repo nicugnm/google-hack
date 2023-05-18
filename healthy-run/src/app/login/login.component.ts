@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {AUTHENTICATE_URL} from "../constants/constants";
+import {AUTHENTICATE_URL} from "../constants/urls";
 
 @Component({
   selector: 'app-login',

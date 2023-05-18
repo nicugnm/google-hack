@@ -1,28 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthComponent } from './auth/auth.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
+import {NgOptimizedImage} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import { ObjectivesComponent } from './objectives/objectives.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HomeComponent } from './home/home.component';
+import {AuthInterceptor} from "./interceptors/auth-interceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
     LoginComponent,
-    ObjectivesComponent
+    HomeComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NoopAnimationsModule,
-        FormsModule,
-      HttpClientModule
-    ],
-  providers: [],
+  imports: [
+    BrowserModule,
+    NoopAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgOptimizedImage,
+    FormsModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
