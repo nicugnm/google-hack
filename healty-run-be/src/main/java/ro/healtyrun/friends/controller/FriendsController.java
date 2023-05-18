@@ -15,6 +15,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/friends")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FriendsController {
 
     private final FriendsService friendsService;

@@ -5,8 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import ro.healtyrun.challenges.model.Challenge;
 import ro.healtyrun.challenges.payload.response.ChallengeResponse;
@@ -16,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,7 +31,10 @@ public class VideoUploaderService {
                                               String description) {
         try {
             byte[] bytes = file.getBytes();
-            Path path = Paths.get("/saves/" + userId.toString() + "/video/" + file.getOriginalFilename());
+            Path path = Paths.get(System.getProperty("java.io.tmpdir"), "saves", userId.toString(), "video", file.getOriginalFilename());
+
+            Files.createDirectories(path.getParent());
+
             Files.write(path, bytes);
 
             Challenge challenge = Challenge.builder()

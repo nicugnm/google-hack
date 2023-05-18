@@ -13,6 +13,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/uploader")
+@CrossOrigin(origins = "http://localhost:3000")
 public class VideoUploaderController {
 
     private final VideoUploaderService videoUploaderService;
@@ -20,7 +21,7 @@ public class VideoUploaderController {
     @PostMapping
     public ResponseEntity<String> uploadVideo(@RequestParam("file") MultipartFile file,
                                               @RequestParam("userId") UUID userId,
-                                              @RequestParam("challenger_id") UUID challengerId,
+                                              @RequestParam("challengerId") UUID challengerId,
                                               @RequestParam("description") String description) {
         return videoUploaderService.uploadVideo(file, userId, challengerId, description);
     }

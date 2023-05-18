@@ -1,7 +1,6 @@
 package ro.healtyrun.objectives.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.healtyrun.objectives.payload.request.FormDataRequest;
@@ -15,6 +14,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/objectives")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ObjectivesController {
 
     private final ObjectiveService objectiveService;
