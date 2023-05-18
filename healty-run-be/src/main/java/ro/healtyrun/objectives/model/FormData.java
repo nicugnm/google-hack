@@ -3,9 +3,7 @@ package ro.healtyrun.objectives.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
-import ro.healtyrun.login.model.User;
 
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -23,11 +21,9 @@ public class FormData {
     @Column(name = "form_data_id")
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User userId;
+    @Column(name = "user_id")
+    private UUID userId;
 
-    @OneToMany
-    @JoinColumn(name = "questions_answers_id")
-    private List<QuestionsAnswers> questionsAnswersList;
+    @Column(name = "questions_answers_id")
+    private UUID questionsAnswersId;
 }
