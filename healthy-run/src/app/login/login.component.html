@@ -1,23 +1,23 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="align-center">
-  <h2>User Login</h2>
-  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)">
-    <input
-      placeholder="Email Id"
-      type="text"
-      name="email"
-      [(ngModel)]="user.email"
-    />
-    <input
-      placeholder="Password"
-      type="password"
-      name="password"
-      [(ngModel)]="user.password"
-    />
-    <div class="btn-div">
-      <button type="submit" [disabled]="!myForm.valid" class="login-btn">
-        Login
-      </button>
+<div class="bg-cyan-600 flex items-center justify-center">
+  <div class="color-[#5B8BDF] flex">
+    <!-- login form -->
+    <div class="p-5">
+      <h2 class="font-bold text-2xl text-white text-center justify-center">HealthyRun</h2>
+
+      <img src="assets/login-image.png">
+      <form (ngSubmit)="onSubmitLogin(f)" class="flex flex-col gap-4 mt-2" action="" #f="ngForm">
+        <input class="mt-2 p-2 rounded-xl border" type="text" ngModel name="email" required placeholder="Email">
+        <input class="mt-2 p-2 rounded-xl border" type="password" ngModel name="password" required placeholder="Password">
+        <button class="bg-[#002D74] rounded-xl text-white mt-2 p-2">Log In</button>
+      </form>
+
+      <div class="text-center">
+        <button class="mt-2 text-white justify-center p-5">Forgot password?</button>
+        <div class="mt-10 text-gray-500 grid grid-cols-2">
+          <div class="mt-10 text-white p-5">Don't have an account?</div>
+          <button class="mt-10 text-white p-5 font-bold">Sign Up!</button>
+        </div>
+      </div>
     </div>
-  </form>
+  </div>
 </div>

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import {User} from "../models/models";
+import {NgForm} from "@angular/forms";
+import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {AUTHENTICATE_URL} from "../constants/constants";
 
 @Component({
   selector: 'app-login',
@@ -8,11 +11,26 @@ import {User} from "../models/models";
 })
 export class LoginComponent {
 
-  user: User = new User("", "")
+  constructor(private httpClient: HttpClient,
+              private router: Router) {
+  }
 
-  onSubmit(user: User) {
-    const message: string = "User logged in successfully"
-    console.log(message)
+  onSubmitLogin(form: NgForm): void {
+    console.log('submit sent!');
+
+    if (!form.valid) {
+      return;
+    }
+
+    const email = form.value.email;
+    const password = form.value.password;
+
+    this.httpClient.post(AUTHENTICATE_URL, {'email': email, 'password': password})
+      .subscribe((httpResponse: any) => {
+        const token = httpResponse.token;
+        localStorage.setItem('token', token);
+        this.router.navigate(['/home']);
+      });
   }
 
 }
