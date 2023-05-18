@@ -3,7 +3,9 @@ package ro.healtyrun.objectives.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
+import ro.healtyrun.login.model.User;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -12,18 +14,21 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "forms_data")
-public class FormData {
+@Table(name = "objectives")
+public class Objective {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
-    @Column(name = "form_data_id")
+    @Column(name = "objective_id")
     private UUID id;
 
     @Column(name = "user_id")
     private UUID userId;
 
-    @Column(name = "questions_answers_id")
-    private UUID questionsAnswersId;
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "expiration_date")
+    private LocalDateTime expirationDate;
 }
